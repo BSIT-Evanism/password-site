@@ -7,6 +7,8 @@
   let bool3 = false;
   let count = 3;
   let time = new Date();
+  let htm;
+  let ht;
 
   $: hours = time.getHours() - 12;
   $: minutes = time.getMinutes();
@@ -31,6 +33,9 @@
 
   $: {
     if (count === 0) {
+      location.href = "/blocked";
+    } else if (bool === true) {
+      location.href = "/welcome";
     }
   }
 
@@ -43,11 +48,23 @@
       clearInterval(interval);
     };
   });
+
+  $: {
+    if (count === 3) {
+      htm = "div";
+    } else if (count === 2) {
+      htm = "h2";
+    } else if (count === 1) {
+      htm = "h1";
+      ht = "text-danger";
+    }
+  }
+
+  $: str = `<${htm} class="${ht}">please put the right password</${htm}>`;
 </script>
 
-<h1>{finPass}</h1>
 <div class="container mt-5 p-5">
-  <div>Please put in the password</div>
+  {@html str}
   <div class="form-floating">
     <input
       bind:value={pass2}
@@ -60,14 +77,20 @@
     {#if finPass === ""}
       <h3>Please input your name first</h3>
     {:else}
-      <button
-        on:click={checkPass(pass2)}
-        type="submit"
-        class="btn btn-primary mt-3">Submit</button
-      >
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button
+          on:click={checkPass(pass2)}
+          type="submit"
+          class="btn btn-primary mt-3">Submit</button
+        >
+      </div>
     {/if}
   </div>
 </div>
+{#if count === 1}
+  <h2>Hint: add your name alongside the time today</h2>
+{/if}
+
 {#if bool === true}
   <h1>Welcome</h1>
 {:else if bool2 === true}

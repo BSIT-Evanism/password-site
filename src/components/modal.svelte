@@ -7,19 +7,18 @@
 
 <Time name={name2} />
 <div>
-  <!-- Button trigger modal -->
-
   {#if name2 === ""}
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Launch demo modal
-    </button>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        type="button"
+        class="btn btn-primary m-2"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Input your name
+      </button>
+    </div>
   {/if}
-  <!-- Modal -->
   <div
     class="modal fade"
     id="exampleModal"

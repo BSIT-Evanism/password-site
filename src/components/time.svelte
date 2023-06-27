@@ -19,4 +19,6 @@
   });
 </script>
 
-<h1>hello, {name} this time today is {hours - 12}:{minutes}:{seconds}</h1>
+<h1 class="text-primary text-center">
+  hello, {name} the time today is {hours - 12}:{minutes}:{seconds}
+</h1>
